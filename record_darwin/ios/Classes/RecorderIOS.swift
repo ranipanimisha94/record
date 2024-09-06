@@ -98,6 +98,7 @@ extension AudioRecordingDelegate {
 
   func changeActivationOnPauseResume(isActive: bool) throws {
     do {
+      let audioSession = AVAudioSession.sharedInstance()
       try audioSession.setActive(isActive, options: .notifyOthersOnDeactivation) // Must be done before setting channels and others
     } catch {
       throw RecorderError.error(message: "Failed to start recording", details: "setActive: \(error.localizedDescription)")
