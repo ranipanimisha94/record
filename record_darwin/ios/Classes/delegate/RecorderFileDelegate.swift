@@ -39,10 +39,12 @@ class RecorderFileDelegate: NSObject, AudioRecordingFileDelegate, AVAudioRecorde
     }
     
     recorder.pause()
+    try changeActivationOnPauseResume(isActive: false)
   }
   
   func resume() {
     audioRecorder?.record()
+    try changeActivationOnPauseResume(isActive: true)
   }
 
   func cancel() throws {
